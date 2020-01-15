@@ -37,5 +37,31 @@ module.exports = {
     }
 
     return res.json(dev)
+  },
+
+  /*
+  async update(req, res) { // name, avatar, bio, techs
+    const { github_username } = req.params
+    const dev = await Dev.findOne({github_username})
+    const { techs, longitude, latitude, ...rest } = req.body
+
+    rest.github_username = github_username
+
+    if (techs)
+      let techsArray = parseStringAsArray(techs)
+      const devUpdate =  await Dev.updateOne({ github_username }, {
+        location
+      })
+
+    return res.json({dev})
+  },
+  */
+  /*
+  async destroy(req, res) {
+    const { id } = req.params
+
+    await Dev.findByIdAndDelete(id)
+    return res.status(200).json({ message: 'Success! User deleted!' })
   }
+  */
 }

@@ -1,2 +1,2 @@
-# semanaOmnistack - devRadar
-Estudando e Praticando: semanaOmnistack10 com JavaScript, Reactjs, React Native, NodeJS
+# semanaOmnistack10 - devRadar
+Estudando e Praticando com Rocketseat: semanaOmnistack10 com JavaScript, Reactjs, React Native, NodeJS

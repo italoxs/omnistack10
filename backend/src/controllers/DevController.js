@@ -39,29 +39,48 @@ module.exports = {
     return res.json(dev)
   },
 
-  /*
+
   async update(req, res) { // name, avatar, bio, techs
     const { github_username } = req.params
-    const dev = await Dev.findOne({github_username})
-    const { techs, longitude, latitude, ...rest } = req.body
+    const { techs, longitude, latitude, bio, avatar_url, name } = req.body
 
-    rest.github_username = github_username
+    const dev = await Dev.findOne({ github_username })
 
-    if (techs)
-      let techsArray = parseStringAsArray(techs)
-      const devUpdate =  await Dev.updateOne({ github_username }, {
-        location
-      })
+    if (!dev) {
+      return res.json({ error: 'User not found !' })
+    }
 
-    return res.json({dev})
+    const techsArray = parseStringAsArray(techs)
+
+    const location = {
+      type: 'Point',
+      coordinates: [longitude, latitude]
+    }
+
+    const devUpdated = await dev.update({
+      name,
+      avatar_url,
+      bio,
+      location,
+      techs: techsArray,
+    })
+
+    return res.json(devUpdated)
   },
-  */
-  /*
-  async destroy(req, res) {
-    const { id } = req.params
 
-    await Dev.findByIdAndDelete(id)
-    return res.status(200).json({ message: 'Success! User deleted!' })
+
+  async destroy(req, res) {
+    const { github_username } = req.params
+
+    const dev = await Dev.findOne({ github_username })
+
+    if (!dev) {
+      return res.json({ error: 'User not found' })
+    }
+
+    await dev.delete()
+
+    return res.json({ message: 'deleted' })
   }
-  */
+
 }
